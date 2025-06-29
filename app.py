@@ -7,10 +7,10 @@ from transformers import AutoTokenizer, AutoConfig, AutoModelForSequenceClassifi
 # Ganti dengan direct download link Google Drive (format: https://drive.google.com/uc?id=FILE_ID)
 MODEL_FILES = {
     "config.json": "https://drive.google.com/uc?id=1-gaeEZS51znvhsvSdnez9XB-xKvR2Dih",
-    "best_model": "https://drive.google.com/uc?id=1USuLqLopkGwJY6EtBTARdor6qvHcowW_",
-    "tokenizer.json": "https://drive.google.com/uc?id=1-tHk4S9UMk3xdosTpkgeCkxsP3JWB2xJ",
+    "best_model.pt": "https://drive.google.com/uc?id=1USuLqLopkGwJY6EtBTARdor6qvHcowW_",
     "vocab.txt": "https://drive.google.com/uc?id=1Ur8adye08EcCoQ74YMIgFCPJenkdtqhA",
-    "special_tokens_map.json": "https://drive.google.com/uc?id=1-lurkvcFx02DmjMqzIc9Z4LGRGRQ9AuS"
+    "special_tokens_map.json": "https://drive.google.com/uc?id=1-lurkvcFx02DmjMqzIc9Z4LGRGRQ9AuS",
+    "tokenizer_config.json": "https://drive.google.com/uc?id=1-tHk4S9UMk3xdosTpkgeCkxsP3JWB2xJ"  # kalau perlu, isi dengan link sebenarnya
 }
 
 MODEL_FOLDER = "petugas_model"
@@ -19,8 +19,8 @@ def download_model():
     if not os.path.exists(MODEL_FOLDER):
         os.makedirs(MODEL_FOLDER)
     for filename, url in MODEL_FILES.items():
-        # Jika file 'best_model', simpan dengan nama 'pytorch_model.bin'
-        if filename == "best_model":
+        # Rename best_model.pt menjadi pytorch_model.bin saat simpan di folder
+        if filename == "best_model.pt":
             path = os.path.join(MODEL_FOLDER, "pytorch_model.bin")
         else:
             path = os.path.join(MODEL_FOLDER, filename)
@@ -28,6 +28,14 @@ def download_model():
         if not os.path.exists(path):
             with st.spinner(f"Mengunduh {filename}..."):
                 gdown.download(url, path, quiet=False)
+
+def ensure_model_filenames():
+    # Jika ada best_model.pt yang belum di-rename ke pytorch_model.bin, rename sekarang
+    best_model_path = os.path.join(MODEL_FOLDER, "best_model.pt")
+    pytorch_model_path = os.path.join(MODEL_FOLDER, "pytorch_model.bin")
+
+    if os.path.exists(best_model_path) and not os.path.exists(pytorch_model_path):
+        os.rename(best_model_path, pytorch_model_path)
 
 @st.cache_resource(show_spinner=True)
 def load_tokenizer():
@@ -44,6 +52,8 @@ def main():
     st.title("📌 Prediksi Aspek: Petugas Haji")
 
     download_model()
+
+    ensure_model_filenames()  # pastikan nama file model sudah benar
 
     tokenizer = load_tokenizer()
     model = load_model()
