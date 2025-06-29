@@ -7,17 +7,16 @@ import torch
 import pandas as pd
 from transformers import BertTokenizer, BertConfig, BertForSequenceClassification
 
-# ======== MODEL FILES =========
 MODEL_FILES = {
-    "config.json": "https://drive.google.com/uc?id=1-gaeEZS51znvhsvSdnez9XB-xKvR2Dih",
-    "best_model.pt": "https://drive.google.com/uc?id=1USuLqLopkGwJY6EtBTARdor6qvHcowW_",
-    "vocab.txt": "https://drive.google.com/uc?id=1Ur8adye08EcCoQ74YMIgFCPJenkdtqhA",
-    "special_tokens_map.json": "https://drive.google.com/uc?id=1-lurkvcFx02DmjMqzIc9Z4LGRGRQ9AuS",
+    "config.json": "https://drive.google.com/uc?id=1SQTrxi-SPteLDUsaSuyVJP6vz7B_HR-g",
+    "best_model.pt": "https://drive.google.com/uc?id=1FyKVBFkNn5lGKyQ4nAI9hkE89swtoGp3",
+    "vocab.txt": "https://drive.google.com/uc?id=1QZM0JNNP7M3MxdHnuWHoSKA6opJHXoqi",
+    "special_tokens_map.json": "https://drive.google.com/uc?id=ZYUsqSqWpR8NEtQ0MEX3hs_Le0UFd1HK",
     "tokenizer_config.json": "https://drive.google.com/uc?id=1-tHk4S9UMk3xdosTpkgeCkxsP3JWB2xJ"
 }
-MODEL_FOLDER = "petugas_model"
+MODEL_FOLDER = "sentimen_petugas_model"
 
-KAMUS_CSV_URL = "https://drive.google.com/uc?id=1fGWZu5qVYJa-pv078spaLE4urs5zDDPV"
+KAMUS_CSV_URL = "https://drive.google.com/uc?id=ETSelCGIgN9L6p6-I79LlTXSWuPltEAp"
 KAMUS_PATH = "kamus.csv"
 
 def download_model():
@@ -61,7 +60,7 @@ def preprocess(text, kamus_slang):
     return text.strip()
 
 def main():
-    st.title("📌 Prediksi Aspek: Petugas Haji")
+    st.title("🧭 Prediksi Sentimen - Aspek Petugas Haji")
 
     download_model()
     download_kamus()
@@ -72,7 +71,7 @@ def main():
 
     text = st.text_area("Masukkan teks:", height=150)
 
-    if st.button("Cek Aspek"):
+    if st.button("Prediksi Sentimen"):
         if not text.strip():
             st.warning("Masukkan teks dulu ya!")
             return
@@ -85,16 +84,10 @@ def main():
         logits = outputs.logits
         pred = torch.argmax(logits, dim=1).item()
 
-        if pred == 1:
-            st.success("✅ Teks ini **termasuk aspek petugas**.")
-            st.markdown("---")
-            st.markdown("🔄 Lanjutkan prediksi sentimen:")
-            st.markdown(
-                '[Klik di sini untuk buka aplikasi prediksi sentimen aspek petugas](https://sentimen-petugas.streamlit.app)',
-                unsafe_allow_html=True
-            )
-        else:
-            st.warning("⛔ Teks ini **tidak termasuk aspek petugas**.")
+        if pred == 2:
+            st.success("✅ Sentimen: **Positif**")
+        else:  # pred == 0
+            st.error("❌ Sentimen: **Negatif**")
 
 if __name__ == "__main__":
     main()
