@@ -16,7 +16,7 @@ MODEL_FILES = {
 }
 MODEL_FOLDER = "sentimen_petugas_model"
 
-KAMUS_CSV_URL = "https://drive.google.com/uc?id=ETSelCGIgN9L6p6-I79LlTXSWuPltEAp"
+KAMUS_CSV_URL = "https://drive.google.com/uc?id=1fGWZu5qVYJa-pv078spaLE4urs5zDDPV"
 KAMUS_PATH = "kamus.csv"
 
 def download_model():
