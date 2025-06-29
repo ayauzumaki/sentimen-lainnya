@@ -4,13 +4,13 @@ import streamlit as st
 import torch
 from transformers import AutoTokenizer, AutoConfig, AutoModelForSequenceClassification
 
-# URL Google Drive file best model aspek petugas kamu (ganti ini dengan link asli)
+# Ganti dengan direct download link Google Drive (format: https://drive.google.com/uc?id=FILE_ID)
 MODEL_FILES = {
-    "config.json": "https://drive.google.com/file/d/1-gaeEZS51znvhsvSdnez9XB-xKvR2Dih/view?usp=sharing",
-    "best_model": "https://drive.google.com/file/d/1USuLqLopkGwJY6EtBTARdor6qvHcowW_/view?usp=drive_link",
-    "tokenizer.json": "https://drive.google.com/file/d/1-tHk4S9UMk3xdosTpkgeCkxsP3JWB2xJ/view?usp=drive_link",
-    "vocab.txt": "https://drive.google.com/file/d/1Ur8adye08EcCoQ74YMIgFCPJenkdtqhA/view?usp=drive_link",
-    "special_tokens_map.json": "https://drive.google.com/file/d/1-lurkvcFx02DmjMqzIc9Z4LGRGRQ9AuS/view?usp=drive_link"
+    "config.json": "https://drive.google.com/uc?id=1-gaeEZS51znvhsvSdnez9XB-xKvR2Dih",
+    "best_model": "https://drive.google.com/uc?id=1USuLqLopkGwJY6EtBTARdor6qvHcowW_",
+    "tokenizer.json": "https://drive.google.com/uc?id=1-tHk4S9UMk3xdosTpkgeCkxsP3JWB2xJ",
+    "vocab.txt": "https://drive.google.com/uc?id=1Ur8adye08EcCoQ74YMIgFCPJenkdtqhA",
+    "special_tokens_map.json": "https://drive.google.com/uc?id=1-lurkvcFx02DmjMqzIc9Z4LGRGRQ9AuS"
 }
 
 MODEL_FOLDER = "petugas_model"
@@ -19,7 +19,12 @@ def download_model():
     if not os.path.exists(MODEL_FOLDER):
         os.makedirs(MODEL_FOLDER)
     for filename, url in MODEL_FILES.items():
-        path = os.path.join(MODEL_FOLDER, filename)
+        # Jika file 'best_model', simpan dengan nama 'pytorch_model.bin'
+        if filename == "best_model":
+            path = os.path.join(MODEL_FOLDER, "pytorch_model.bin")
+        else:
+            path = os.path.join(MODEL_FOLDER, filename)
+
         if not os.path.exists(path):
             with st.spinner(f"Mengunduh {filename}..."):
                 gdown.download(url, path, quiet=False)
