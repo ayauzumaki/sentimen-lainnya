@@ -1,4 +1,5 @@
-transformers
-torch
 streamlit
+torch
+transformers
 gdown
+pandas
