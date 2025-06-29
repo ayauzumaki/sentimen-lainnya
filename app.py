@@ -11,7 +11,7 @@ MODEL_FILES = {
     "config.json": "https://drive.google.com/uc?id=1PwLc9C2ifJXqYa2Dq41aWTE7B6o-Yew_",
     "best_model.pt": "https://drive.google.com/uc?id=1a2n4epYb1y-XKRy4AJ13M5XAew-U-rND",
     "vocab.txt": "https://drive.google.com/uc?id=1eWl-oz6dlaugnqaj_bZkQ_bS9UjgmDih",
-    "special_tokens_map.json": "https://drive.google.com/uc?id=11Txk9jHUD-ZJpt1VP0RP1tthU0PJHS_Sm",
+    "special_tokens_map.json": "https://drive.google.com/uc?id=1Txk9jHUD-ZJpt1VP0RP1tthU0PJHS_Sm",
     "tokenizer_config.json": "https://drive.google.com/uc?id=1lltqIoi41mLXg5q-yO2dRmf90FVeoRBI"
 }
 MODEL_FOLDER = "sentimen_lainnya_model"
