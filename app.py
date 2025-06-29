@@ -11,7 +11,7 @@ MODEL_FILES = {
     "config.json": "https://drive.google.com/uc?id=1SQTrxi-SPteLDUsaSuyVJP6vz7B_HR-g",
     "best_model.pt": "https://drive.google.com/uc?id=1FyKVBFkNn5lGKyQ4nAI9hkE89swtoGp3",
     "vocab.txt": "https://drive.google.com/uc?id=1QZM0JNNP7M3MxdHnuWHoSKA6opJHXoqi",
-    "special_tokens_map.json": "https://drive.google.com/uc?id=ZYUsqSqWpR8NEtQ0MEX3hs_Le0UFd1HK",
+    "special_tokens_map.json": "https://drive.google.com/uc?id=1ZYUsqSqWpR8NEtQ0MEX3hs_Le0UFd1HK",
     "tokenizer_config.json": "https://drive.google.com/uc?id=1-tHk4S9UMk3xdosTpkgeCkxsP3JWB2xJ"
 }
 MODEL_FOLDER = "sentimen_petugas_model"
