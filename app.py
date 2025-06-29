@@ -6,11 +6,11 @@ from transformers import AutoTokenizer, AutoConfig, AutoModelForSequenceClassifi
 
 # URL Google Drive file best model aspek petugas kamu (ganti ini dengan link asli)
 MODEL_FILES = {
-    "config.json": "https://drive.google.com/uc?id=ID_FILE_CONFIG",
-    "model.safetensors": "https://drive.google.com/uc?id=ID_FILE_MODEL",
-    "tokenizer.json": "https://drive.google.com/uc?id=ID_FILE_TOKENIZER",
-    "vocab.txt": "https://drive.google.com/uc?id=ID_FILE_VOCAB",
-    "special_tokens_map.json": "https://drive.google.com/uc?id=ID_FILE_SPECIAL_TOKENS"
+    "config.json": "https://drive.google.com/file/d/1-gaeEZS51znvhsvSdnez9XB-xKvR2Dih/view?usp=sharing",
+    "best_model": "https://drive.google.com/file/d/1USuLqLopkGwJY6EtBTARdor6qvHcowW_/view?usp=drive_link",
+    "tokenizer.json": "https://drive.google.com/file/d/1-tHk4S9UMk3xdosTpkgeCkxsP3JWB2xJ/view?usp=drive_link",
+    "vocab.txt": "https://drive.google.com/file/d/1Ur8adye08EcCoQ74YMIgFCPJenkdtqhA/view?usp=drive_link",
+    "special_tokens_map.json": "https://drive.google.com/file/d/1-lurkvcFx02DmjMqzIc9Z4LGRGRQ9AuS/view?usp=drive_link"
 }
 
 MODEL_FOLDER = "petugas_model"
